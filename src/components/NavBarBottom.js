@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { CircularProgressbar } from "react-circular-progressbar";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import 'react-circular-progressbar/dist/styles.css';
 import { Link } from "react-router-dom";
 
@@ -7,8 +7,9 @@ export default function NavBarBottom() {
     return(
         <ContainerBottom>
             <Link><p>Hábitos</p></Link>
-            <ContainerProgressBar>
-                <CircularProgressbar/>
+            <ContainerProgressBar >
+                <CircularProgressbar background backgroundpadding={8} text={"Hoje"} styles={buildStyles({backgroundColor:"#52B6FF", textColor:"#ffffff", textSize:"18px",
+            trailColor:"transparent", pathColor: "#ffffff"})}/>
             </ContainerProgressBar>
             <Link><p>Histórico</p></Link>
         </ContainerBottom>

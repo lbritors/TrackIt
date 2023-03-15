@@ -35,6 +35,9 @@ const GlobalStyle = createGlobalStyle`
         line-height: 49px;
         color: #FFFFFF;
     }
+    p{
+        font-family: 'Lexend Deca', sans-serif;
+    }
 
 
 

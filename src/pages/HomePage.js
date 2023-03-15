@@ -10,8 +10,8 @@ export default function HomePage() {
             <form>
                 <input id="email" placeholder="email"></input>
                 <input id="senha" placeholder="senha"></input>
-                <button type="submit">Entrar</button>
-                <Link>Não tem uma conta? Cadastre-se!</Link>
+                <Link to="/hoje"><button type="submit">Entrar</button></Link>
+                <Link to="/cadastro">Não tem uma conta? Cadastre-se!</Link>
             </form>
         </HomeContainer>
     )
