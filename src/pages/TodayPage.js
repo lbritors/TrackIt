@@ -1,15 +1,32 @@
 import NavBarBottom from "../components/NavBarBottom"
 import NavBarTop from "../components/NavBarTop"
 import styled from "styled-components"
+import dayjs from "dayjs";
+
 
 export default function TodayPage() {
+require('dayjs/locale/pt-br');
+const day = dayjs().locale('pt-br').format(`dddd, DD/MM`).split('');
+function tranformDay() { 
+
+    for(let i = 0; i < day.length; i++) {
+        if(i === 0) {
+            day[i] = day[i].toUpperCase();
+        }
+        
+    }
+
+}
+
+tranformDay();
+
 
 return (
     <>
         <NavBarTop/>
         <ContainerToday>
             <ContainerTitulo>
-                <h2>Segunda 14/03</h2>
+                <h2>{day}</h2>
                 <h3>Nunhum hábito concluído ainda</h3>
             </ContainerTitulo>
             <ContainerConteudo>

@@ -1,18 +1,19 @@
 import styled from "styled-components"
 import logocompleta from "../assets/Group 8.png"
 import { Link, useNavigate } from "react-router-dom"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import BaseURL from "../constants/BaseURL";
 import axios from "axios";
 import { ThreeDots } from "react-loader-spinner";
+import UserContext from "../UserContext";
 
 
 export default function LoginPage(props) {
-    const {setToken} = props;
+    const {setToken}  = props;
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const navigate = useNavigate();
-    const [disabled, setDisabled] = useState(true);
+    const navigate = useNavigate(undefined);
+    const [disabled, setDisabled] = useState(false);
 
 function doLogin(event) {
     event.preventDefault();
@@ -27,9 +28,6 @@ function doLogin(event) {
     promise.catch((err) => alert(err.response.data.message));
 }
 
-if(navigate === undefined) {
-    setDisabled(true);
-}
 
     return (
         <LoginContainer>

@@ -6,11 +6,13 @@ import { Link } from "react-router-dom";
 export default function NavBarBottom() {
     return(
         <ContainerBottom>
-            <Link><p>Hábitos</p></Link>
-            <ContainerProgressBar >
-                <CircularProgressbar background backgroundpadding={8} text={"Hoje"} styles={buildStyles({backgroundColor:"#52B6FF", textColor:"#ffffff", textSize:"18px",
-            trailColor:"transparent", pathColor: "#ffffff"})}/>
-            </ContainerProgressBar>
+            <Link to="/habitos"><p>Hábitos</p></Link>
+            <Link  to="/hoje">
+                <ContainerProgressBar >
+                    <CircularProgressbar background backgroundpadding={8} text={"Hoje"} styles={buildStyles({backgroundColor:"#52B6FF", textColor:"#ffffff", textSize:"18px",
+                trailColor:"transparent", pathColor: "#ffffff"})}/>
+                </ContainerProgressBar>
+            </Link>
             <Link><p>Histórico</p></Link>
         </ContainerBottom>
     );
