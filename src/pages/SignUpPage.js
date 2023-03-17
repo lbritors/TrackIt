@@ -1,16 +1,16 @@
 import styled from "styled-components";
 import logocompleta from "../assets/Group 8.png";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
 import BaseURL from "../constants/BaseURL";
 import { ThreeDots } from "react-loader-spinner";
+import UserContext from "../UserContext";
 
-export default function LoginPage() {
-
+export default function SignUpPage() {
+const {form, setForm} = useContext(UserContext);
 const [disabled, setDisabled] = useState(false);
 const navigate = useNavigate(undefined);
-const [form, setForm] = useState({email:"", name: "", image: "", password:""});
 
 
 function handleEvent(event) {

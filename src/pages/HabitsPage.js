@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styled from "styled-components";
 import NavBarBottom from "../components/NavBarBottom";
 import NavBarTop from "../components/NavBarTop";
-import CreateHabitCard from "../components/HabitCard";
+import CreateHabitCard from "../components/CreateHabitCard";
 import HabitList from "../components/HabitList";
+import UserContext from "../UserContext";
 
-export default function HabitsPage(props) {
-    const {token} = props;
+export default function HabitsPage() {
+    const {token} = useContext(UserContext);
     const [habit, setHabit] = useState(false);
     const [nameHabit, setNameHabit] =useState("");
     const [clickedDay, setClickedDay] = useState([]);

@@ -8,21 +8,22 @@ import UserContext from "./UserContext";
 
 function App() {
   const [token, setToken] = useState("");
+  const [form, setForm] = useState({email:"", name: "", image: "", password:""});
 
 
   return (
     
       <BrowserRouter>
-     
+      <UserContext.Provider value={{token,setToken, form, setForm}}>
         <Routes>
         
           <Route  path="/" element={<LoginPage setToken={setToken}></LoginPage>} ></Route>
-          <Route path="/cadastro" element={<SignUpPage></SignUpPage>}></Route>
-          <Route path="/habitos" element={<HabitsPage token={token}></HabitsPage>}></Route>
-          <Route path="/hoje" element={<TodayPage token={token}></TodayPage>}></Route>
+          <Route path="/cadastro" element={<SignUpPage form={form} setForm={setForm}></SignUpPage>}></Route>
+          <Route path="/habitos" element={<HabitsPage  token={token} form={form}></HabitsPage>}></Route>
+          <Route path="/hoje" element={<TodayPage token={token} form={form}></TodayPage>}></Route>
         
         </Routes>
-      
+        </UserContext.Provider>
       </BrowserRouter>
       
  
