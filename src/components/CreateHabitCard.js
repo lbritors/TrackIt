@@ -4,7 +4,7 @@ import BaseURL from "../constants/BaseURL";
 import axios from "axios";
 
 
-export default function HabitCard(props) {
+export default function CreateHabitCard(props) {
 
     const {habit, nameHabit, setNameHabit, clickedDay, setClickedDay, token, dataCard, setDataCard} = props;
     const days = [0, 1, 2, 3, 4, 5, 6];
@@ -60,7 +60,7 @@ function Button(props) {
 
     return(
         <ButtonContainer clickedDay={clickedDay}>
-            <div>{days.map((d, i) => <button onClick={() => setClickedDay([...clickedDay, i])}id={i} key={i}>{letters[i]}</button>)}</div>
+            <div>{days.map((d, i) => <button onClick={() => setClickedDay([...clickedDay, i])} id={i} key={i}>{letters[i]}</button>)}</div>
         </ButtonContainer>
     );
 }

@@ -20,35 +20,37 @@ export default function HabitList(props) {
         const promise = axios.get(url, config);
         promise.then((res) => {
             console.log(res.data)
-            setHabitFetched([...habitFetched, res.data])});
+            setHabitFetched([...habitFetched, res.data]);
+        });
         promise.catch((err) => alert(err.response.data.message));
     }, [])
 
     return(
-        <Container>
-            <HabitItem></HabitItem>
-          
-        </Container>
-    );
+        <> 
 
+            <HabitItem letters={letters} habitFetched={habitFetched}>  </HabitItem>
+            
+        </>
+    );
 
 }
 
 function HabitItem(props) {
-    const {letters} = props;
+    const {letters, habitFetched} = props
+
     return(
-        <>
-            {/* <p>Item</p>
-            
-                <ButtonContainer>
-                    <div>
-                       {letters.map(l => <button>{l}</button>)}
-                    </div>
-                </ButtonContainer> */}
-            
-        </>
-    )
+        <Container>
+            <p>h.name</p>
+            <ButtonContainer>
+            {letters.map((l, i) => <button key={i}>{l}</button>)}
+            </ButtonContainer>
+        </Container>
+
+
+    );
+
 }
+
 
 
 const Container= styled.div`
@@ -63,7 +65,7 @@ background-color: white;
 const ButtonContainer = styled.div`
 display: flex;
 
-    div{
+   
         button {
         border: 1px solid #D4D4D4;
         height: 30px;
@@ -74,9 +76,5 @@ display: flex;
         margin: 10px 2px;
         
         }
-    }
-
-
-
 
 `

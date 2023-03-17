@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import NavBarBottom from "../components/NavBarBottom";
 import NavBarTop from "../components/NavBarTop";
-import HabitCard from "../components/HabitCard";
+import CreateHabitCard from "../components/HabitCard";
 import HabitList from "../components/HabitList";
 
 export default function HabitsPage(props) {
@@ -26,10 +26,10 @@ export default function HabitsPage(props) {
             </TituloHabitos>
             {habit === false  ?  
                  <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p> : 
-                <HabitCard dataCard={dataCard} setDataCard={setDataCard} habit={habit} token={token}  nameHabit={nameHabit} setClickedDay={setClickedDay} clickedDay={clickedDay} setNameHabit={setNameHabit}></HabitCard>
+                <CreateHabitCard dataCard={dataCard} setDataCard={setDataCard} habit={habit} token={token}  nameHabit={nameHabit} setClickedDay={setClickedDay} clickedDay={clickedDay} setNameHabit={setNameHabit}></CreateHabitCard>
             
             }
-            {/* <HabitList token={token}></HabitList> */}
+            <HabitList token={token}></HabitList>
                 
         </ContainerHabits>
         <NavBarBottom></NavBarBottom>
