@@ -1,22 +1,43 @@
+import { useState } from "react";
 import styled from "styled-components";
 import NavBarBottom from "../components/NavBarBottom";
 import NavBarTop from "../components/NavBarTop";
+import HabitCard from "../components/HabitCard";
+import HabitList from "../components/HabitList";
 
-export default function HabitsPage() {
+export default function HabitsPage(props) {
+    const {token} = props;
+    const [habit, setHabit] = useState(false);
+    const [nameHabit, setNameHabit] =useState("");
+    const [clickedDay, setClickedDay] = useState([]);
+    const [dataCard, setDataCard] = useState([]);
+
+    
+    console.log(dataCard);
+   
+
     return(
         <>
         <NavBarTop></NavBarTop>
-        <ContainerHabits>
+        <ContainerHabits data-test="habit-create-container">
             <TituloHabitos>
                 <h2>Meus hábitos</h2>
-                <button>+</button>
+                <button onClick={() => setHabit(true)} data-test="habit-create-btn">+</button>
             </TituloHabitos>
-            <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
+            {habit === false  ?  
+                 <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p> : 
+                <HabitCard dataCard={dataCard} setDataCard={setDataCard} habit={habit} token={token}  nameHabit={nameHabit} setClickedDay={setClickedDay} clickedDay={clickedDay} setNameHabit={setNameHabit}></HabitCard>
+            
+            }
+            {/* <HabitList token={token}></HabitList> */}
+                
         </ContainerHabits>
         <NavBarBottom></NavBarBottom>
         </>
     );
 }
+
+
 
 
 const ContainerHabits = styled.div`
@@ -58,3 +79,4 @@ align-items: center;
         height: 35px;
     }
 `
+

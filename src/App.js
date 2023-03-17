@@ -18,7 +18,7 @@ function App() {
         
           <Route  path="/" element={<LoginPage setToken={setToken}></LoginPage>} ></Route>
           <Route path="/cadastro" element={<SignUpPage></SignUpPage>}></Route>
-          <Route path="/habitos" element={<HabitsPage ></HabitsPage>}></Route>
+          <Route path="/habitos" element={<HabitsPage token={token}></HabitsPage>}></Route>
           <Route path="/hoje" element={<TodayPage token={token}></TodayPage>}></Route>
         
         </Routes>

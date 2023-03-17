@@ -4,7 +4,7 @@ import user from "../assets/user.png";
 
 export default function NavBarTop() {
     return(
-        <TopContainer>
+        <TopContainer data-test="header">
             <h1>TrackIt</h1>
             <img src={user}></img>
         </TopContainer>

@@ -19,7 +19,7 @@ function handleEvent(event) {
 
 function sendData(event) {
     event.preventDefault();
-    const request = axios.post(`${BaseURL}/sign-up`, 
+    const request = axios.post(`${BaseURL}/auth/sign-up`, 
     form);
     request.then((res) => navigate("/"));
     request.catch((err) => alert(err.response.data.message));
@@ -35,15 +35,15 @@ if( navigate === undefined) {
         <LoginContainer>
              <img src={logocompleta}></img>
             <form onSubmit={sendData}>
-                <input name="email"  placeholder="email" disabled={disabled} type={"email"} required value={form.email} onChange={handleEvent}></input>
-                <input name="password" placeholder="senha" type={"password"} disabled={disabled} required value={form.password} onChange={handleEvent}></input>
-                <input name="name" placeholder="nome" required value={form.name} disabled={disabled} onChange={handleEvent}></input>
-                <input name="image" placeholder="foto" required value={form.image} disabled={disabled} onChange={handleEvent}></input>
-                <button type="submit" disabled={disabled}>
+                <input name="email" data-test="email-input" placeholder="email" disabled={disabled} type={"email"} required value={form.email} onChange={handleEvent}></input>
+                <input name="password" data-test="password-input" placeholder="senha" type={"password"} disabled={disabled} required value={form.password} onChange={handleEvent}></input>
+                <input name="name" placeholder="nome" data-test="user-name-input" required value={form.name} disabled={disabled} onChange={handleEvent}></input>
+                <input name="image" placeholder="foto" data-test="user-image-input" required value={form.image} disabled={disabled} onChange={handleEvent}></input>
+                <button type="submit" disabled={disabled} data-test="signup-btn">
                    { disabled === false ? <ContainerButton>Cadastrar</ContainerButton> :
                     <ThreeDots visible={disabled} height={80} width="80" radius="9" ariaLabel="three-dots-loading" wrapperStyle={{display:"flex"}} color="white"/>}
                 </button>
-                <Link to="/">Já tem uma conta? Faça login!</Link>
+                <Link to="/" data-test="login-link">Já tem uma conta? Faça login!</Link>
             </form>
         </LoginContainer>
     )

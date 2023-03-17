@@ -5,15 +5,15 @@ import { Link } from "react-router-dom";
 
 export default function NavBarBottom() {
     return(
-        <ContainerBottom>
-            <Link to="/habitos"><p>Hábitos</p></Link>
+        <ContainerBottom data-test="menu">
+            <Link to="/habitos" data-test="habit-link"><p>Hábitos</p></Link>
             <Link  to="/hoje">
-                <ContainerProgressBar >
+                <ContainerProgressBar data-test="today-link">
                     <CircularProgressbar background backgroundpadding={8} text={"Hoje"} styles={buildStyles({backgroundColor:"#52B6FF", textColor:"#ffffff", textSize:"18px",
                 trailColor:"transparent", pathColor: "#ffffff"})}/>
                 </ContainerProgressBar>
             </Link>
-            <Link><p>Histórico</p></Link>
+            <Link data-test="history-link"><p>Histórico</p></Link>
         </ContainerBottom>
     );
 

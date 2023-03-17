@@ -17,7 +17,7 @@ export default function LoginPage(props) {
 
 function doLogin(event) {
     event.preventDefault();
-    const url = `${BaseURL}/login`;
+    const url = `${BaseURL}/auth/login`;
     const promise = axios.post(url, {email: email, password: password});
     promise.then((res) => {
         console.log(res.data);
@@ -33,15 +33,15 @@ function doLogin(event) {
         <LoginContainer>
             <img src={logocompleta}></img>
             <form onSubmit={doLogin}>
-                <input placeholder="email" type={"email"} value={email} required disabled={disabled} onChange={e => setEmail(e.target.value)}></input>
-                <input type={"password"} placeholder="senha" value={password} required disabled={disabled} onChange={e => setPassword(e.target.value)} ></input>
-                <button type="submit" disabled={disabled}>
+                <input placeholder="email" data-test="email-input" type={"email"} value={email} required disabled={disabled} onChange={e => setEmail(e.target.value)}></input>
+                <input type={"password"} placeholder="senha" data-test="password-input" value={password} required disabled={disabled} onChange={e => setPassword(e.target.value)} ></input>
+                <button type="submit" disabled={disabled} data-test="login-btn">
                     {disabled === false ? <ContainerButton disabled={disabled}><p>Entrar</p></ContainerButton> :
                     <ContainerButton disabled={disabled}>
                         <ThreeDots  height={80} width="80" radius="9" ariaLabel="three-dots-loading" wrapperStyle={{display:"flex"}} color="white"/> 
                     </ContainerButton>}
                 </button>
-                <Link to="/cadastro">Não tem uma conta? Cadastre-se!</Link>
+                <Link to="/cadastro" data-test="signup-link">Não tem uma conta? Cadastre-se!</Link>
             </form>
         </LoginContainer>
     )
