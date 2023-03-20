@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import styled from "styled-components";
-import user from "../assets/user.png";
 import UserContext from "../UserContext";
 
 export default function NavBarTop() {
