@@ -65,6 +65,7 @@ height: 80px;
 display: flex;
 justify-content: space-between;
 align-items: center;
+margin-top: 60px;
 
     h2 {
     font-size: 23px;

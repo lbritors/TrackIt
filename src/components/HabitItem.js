@@ -7,7 +7,33 @@ import WeekButton from "./WeekButton";
 
 
 export default function HabitItem(props) {
-    const {nome, id, dias} = props;
+    const {nome, id, dias, habitFetched, setHabitFetched} = props;
+    const {token} = useContext(UserContext);
+
+    function deleteHabit(id, nome, dias, habitos) {
+        console.log(habitos);
+        const naoDeletado = habitos.filter(h => id !== h.id);
+        console.log(naoDeletado);
+        const texto = "Deseja deletar hábito?";
+        if(window.confirm(texto) === true) {
+            const url = `${BaseURL}/habits/${id}`;
+            const config = {
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            }
+            const promise = axios.delete(url, config);
+            promise.then((res) => {
+                console.log(res.data);
+                setHabitFetched(naoDeletado);
+                
+            })  
+            promise.catch((err) => console.log(err.response.data)); 
+        }
+    }
+
+
+
     console.log(nome);
     
     
@@ -15,7 +41,7 @@ export default function HabitItem(props) {
         <Container>
             <div>
                 <p>{nome}</p>
-                <ion-icon name="trash-outline"></ion-icon>
+                <ion-icon name="trash-outline" onClick={() => deleteHabit(id, nome, dias,habitFetched)}></ion-icon>
             </div>
             <WeekButton/>
         </Container>

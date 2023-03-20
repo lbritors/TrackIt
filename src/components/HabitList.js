@@ -30,7 +30,7 @@ export default function HabitList(props) {
     return(
         <> 
 
-            {habitFetched.map((h, i) => <HabitItem nome={h.name} key={h.id} id={h.id} dias={h.days}></HabitItem>)}
+            {habitFetched.map((h, i) => <HabitItem nome={h.name} key={h.id} id={h.id} dias={h.days} habitFetched={habitFetched} setHabitFetched={setHabitFetched}></HabitItem>)}
             
         </>
     );
