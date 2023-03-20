@@ -8,10 +8,11 @@ import { ThreeDots } from "react-loader-spinner";
 import UserContext from "../UserContext";
 
 export default function SignUpPage() {
-const {form, setForm} = useContext(UserContext);
+const [form, setForm] = useState({email:"", name: "", image: "", password:""});
 const [disabled, setDisabled] = useState(false);
 const navigate = useNavigate(undefined);
 
+console.log(form);
 
 function handleEvent(event) {
     setForm({...form, [event.target.name]: event.target.value});
@@ -19,17 +20,16 @@ function handleEvent(event) {
 
 function sendData(event) {
     event.preventDefault();
+    setDisabled(true);
     const request = axios.post(`${BaseURL}/auth/sign-up`, 
     form);
     request.then((res) => navigate("/"));
-    request.catch((err) => alert(err.response.data.message));
+    request.catch((err) => {
+        setDisabled(false);
+        alert(err.response.data.message);
+        });
 }
 
-
-if( navigate === undefined) {
-    setDisabled(true);
-
-}
 
     return(
         <LoginContainer>

@@ -2,11 +2,12 @@ import styled from "styled-components";
 import { useState } from "react";
 import BaseURL from "../constants/BaseURL";
 import axios from "axios";
+import WeekButton from "./WeekButton";
 
 
 export default function CreateHabitCard(props) {
 
-    const {habit, nameHabit, setNameHabit, clickedDay, setClickedDay, token, dataCard, setDataCard} = props;
+    const { nameHabit, setNameHabit, clickedDay, setClickedDay, token, dataCard, setDataCard, setClicou} = props;
     const days = [0, 1, 2, 3, 4, 5, 6];
     const letters = ["D", "S", "T" , "Q", "Q", "S", "S"];
     console.log(clickedDay);
@@ -23,9 +24,13 @@ export default function CreateHabitCard(props) {
         }
         const promise = axios.post(url, body, config);
         promise.then((res) => {
+            setClicou(false)
+            setDisabled(true)
             console.log(res.data);
             setDataCard([...dataCard, res.data]); 
-            setNameHabit("");                 }
+            setNameHabit("");
+            setClickedDay([]);
+                            }
         );
         promise.catch((err) => {
             console.log((err) => err.response.data)
@@ -42,12 +47,13 @@ export default function CreateHabitCard(props) {
             <input required disabled={disabled} placeholder="nome do hábito" data-test="habit-name-input" value={nameHabit} onChange={e=> setNameHabit(e.target.value)}></input>
             
                 <div>
-                <Button days={days} setClickedDay={setClickedDay} data-test="habit-day" clickedDay={clickedDay} letters={letters}></Button>
+                <Button days={days}setClickedDay={setClickedDay}  clickedDay={clickedDay} letters={letters}></Button>
+                
                 </div>
            
                 <form onSubmit={sendHabit}>
-                    <button type="button" data-test="habit-create-cancel-btn">Cancelar</button>
-                    <button type="submit" data-test="habit-create-save-btn" disabled={disabled}>Salvar</button>
+                    <button type="button" data-test="habit-create-cancel-btn" onClick={() => setClicou(false)}>Cancelar</button>
+                    <button type="submit" data-test="habit-create-save-btn" disabled={disabled} >Salvar</button>
                 </form>
         </CadastroHabito>
     );
@@ -60,7 +66,7 @@ function Button(props) {
 
     return(
         <ButtonContainer clickedDay={clickedDay}>
-            <div>{days.map((d, i) => <button onClick={() => setClickedDay([...clickedDay, i])} id={i} key={i}>{letters[i]}</button>)}</div>
+            <div>{days.map((d, i) => <button data-test="habit-day" onClick={() => setClickedDay([...clickedDay, i])} ativo={clickedDay.includes(i) ? "ativo" : "naoAtivo"} id={i} key={i}>{letters[i]}</button>)}</div>
         </ButtonContainer>
     );
 }
@@ -109,7 +115,7 @@ display: flex;
         height: 30px;
         width: 30px;
         border-radius: 5px;
-        background-color: white;
+        background-color:  ${({ativo}) => ativo === "ativo" ? "#CFCFCF" : "white" };
         color:  #DBDBDB ;
         margin: 10px 2px;
         

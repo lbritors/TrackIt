@@ -9,23 +9,28 @@ import UserContext from "../UserContext";
 
 
 export default function LoginPage() {
-    const {setToken} = useContext(UserContext);
+    const {setToken, setUserData} = useContext(UserContext);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate(undefined);
     const [disabled, setDisabled] = useState(false);
+    
 
 function doLogin(event) {
     event.preventDefault();
+    setDisabled(true);
     const url = `${BaseURL}/auth/login`;
     const promise = axios.post(url, {email: email, password: password});
     promise.then((res) => {
         console.log(res.data);
         setToken(res.data.token);
+        setUserData(res.data);
         navigate("/hoje");
     });
 
-    promise.catch((err) => alert(err.response.data.message));
+    promise.catch((err) => {
+        alert(err.response.data.message);
+        });
 }
 
 
@@ -36,9 +41,9 @@ function doLogin(event) {
                 <input placeholder="email" data-test="email-input" type={"email"} value={email} required disabled={disabled} onChange={e => setEmail(e.target.value)}></input>
                 <input type={"password"} placeholder="senha" data-test="password-input" value={password} required disabled={disabled} onChange={e => setPassword(e.target.value)} ></input>
                 <button type="submit" disabled={disabled} data-test="login-btn">
-                    {disabled === false ? <ContainerButton disabled={disabled}><p>Entrar</p></ContainerButton> :
+                    {!disabled ? <ContainerButton disabled={disabled}><p>Entrar</p></ContainerButton> :
                     <ContainerButton disabled={disabled}>
-                        <ThreeDots  height={80} width="80" radius="9" ariaLabel="three-dots-loading" wrapperStyle={{display:"flex"}} color="white"/> 
+                        <ThreeDots  height={80} width="80" radius="9" ariaLabel="three-dots-loading" wrapperStyle={{}} color="white" visible={true}/> 
                     </ContainerButton>}
                 </button>
                 <Link to="/cadastro" data-test="signup-link">Não tem uma conta? Cadastre-se!</Link>

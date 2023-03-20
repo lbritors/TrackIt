@@ -1,12 +1,16 @@
+import { useContext } from "react";
 import styled from "styled-components";
-import logo from "../assets/TrackIt.png";
 import user from "../assets/user.png";
+import UserContext from "../UserContext";
 
 export default function NavBarTop() {
+    const {form, userData} = useContext(UserContext);
+    console.log(userData);
+
     return(
         <TopContainer data-test="header">
             <h1>TrackIt</h1>
-            <img src={user}></img>
+            <img src={userData.image}></img>
         </TopContainer>
     );
 

@@ -3,17 +3,19 @@ import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import 'react-circular-progressbar/dist/styles.css';
 import { Link } from "react-router-dom";
 
-export default function NavBarBottom() {
+export default function NavBarBottom(props) {
+    const {fetchHabits, porcentagem} = props;
+    
     return(
         <ContainerBottom data-test="menu">
-            <Link to="/habitos" data-test="habit-link"><p>Hábitos</p></Link>
+            <Link to="/habitos" data-test="habit-link" onClick={fetchHabits}><p>Hábitos</p></Link>
             <Link  to="/hoje">
                 <ContainerProgressBar data-test="today-link">
-                    <CircularProgressbar background backgroundpadding={8} text={"Hoje"} styles={buildStyles({backgroundColor:"#52B6FF", textColor:"#ffffff", textSize:"18px",
+                    <CircularProgressbar background backgroundpadding={8} text={"Hoje"} value={porcentagem} styles={buildStyles({backgroundColor:"#52B6FF", textColor:"#ffffff", textSize:"18px",
                 trailColor:"transparent", pathColor: "#ffffff"})}/>
                 </ContainerProgressBar>
             </Link>
-            <Link data-test="history-link"><p>Histórico</p></Link>
+            <Link data-test="history-link" to="/historico"><p>Histórico</p></Link>
         </ContainerBottom>
     );
 
