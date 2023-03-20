@@ -44,7 +44,7 @@ export default function HabitItem(props) {
                     <ion-icon name="trash-outline" data-test="habit-delete-btn" onClick={() => deleteHabit(id, habitFetched)}></ion-icon>
                 </div>
                 <div>
-                <WeekButton dias={dias} ></WeekButton>
+                <Button dias={dias} ></Button>
                 </div>
         </Container>
         
@@ -53,7 +53,7 @@ export default function HabitItem(props) {
 }
 
 
-function WeekButton(props) {
+function Button(props) {
     const { dias} = props;
     const letters = ["D", "S", "T" , "Q", "Q", "S", "S"];
     return(
